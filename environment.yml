@@ -4,6 +4,7 @@ channels:
 - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 - defaults
 dependencies:
+- pyquery=1.4.0=py36_0
 - asn1crypto=0.22.0=py36_0
 - attrs=15.2.0=py36_0
 - automat=0.5.0=py36_0

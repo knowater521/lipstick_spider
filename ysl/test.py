@@ -36,7 +36,7 @@ def get_product(page_url):
             sku_code = pq(item).attr('code')
             print('spider', sku_code)
             sku_list_data = pq(item).find('span:last').text().split(" ")
-            color_no, sku_name = sku_list_data[0], ''.join(sku_list_data[1:])
+            color_no, sku_name = sku_list_data[0], ' '.join(sku_list_data[1:])
 
             # sku_url
             sku_url = host + '/item/' + sku_code
@@ -53,8 +53,9 @@ def get_product(page_url):
             for sku_img_selector in sku_page('.main-box').find('.swiper-lazy'):
                 sku_img_url = pq(sku_img_selector).attr('data-src')
                 sku_img_urls.append(sku_img_url)
-                sku_img_file = "./img/" + uuid.uuid4().hex + '.jpg'
-                sku_img_downloads.append(sku_img_file)
+                uuid_str = uuid.uuid4().hex
+                sku_img_file = "./img/" + uuid_str + '.jpg'
+                sku_img_downloads.append(uuid_str)
                 with codecs.open(sku_img_file, 'wb') as img_file:
                     img_file.write(BytesIO(requests.get(sku_img_url).content).read())
             result.append({

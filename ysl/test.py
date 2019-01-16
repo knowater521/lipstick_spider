@@ -17,9 +17,12 @@ host = "https://www.yslbeautycn.com"
 
 
 def get_product(page_url):
+    brand_code = 'YSL'
+    brand_name = '圣罗兰'
+
     list_page = pq(url=host + page_url)
     # 分类
-    catalog = list_page(".list-inline li:last").text()
+    catalog_name = list_page(".list-inline li:last").text()
 
     # 产品信息
     goods_info = {}
@@ -42,8 +45,8 @@ def get_product(page_url):
             sku_url = host + '/item/' + sku_code
             # sku_img
             # rgb
-            rgb_img = pq(item).find('img').attr('src')
-            rgb_img_response = requests.get(rgb_img)
+            color_card_url = pq(item).find('img').attr('src')
+            rgb_img_response = requests.get(color_card_url)
             image = Image.open(BytesIO(rgb_img_response.content))
             pixel = image.getpixel((1, 1))
             colour = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel)))
@@ -59,17 +62,21 @@ def get_product(page_url):
                 with codecs.open(sku_img_file, 'wb') as img_file:
                     img_file.write(BytesIO(requests.get(sku_img_url).content).read())
             result.append({
-                'catalog': catalog,
+                'brand_code': brand_code,
+                'brand_name': brand_code,
+                'catalog_name': catalog_name,
                 'goods_code': goods_code,
                 'goods_name': goods_name,
-                'goods_url': goods_url,
+                'goods_url': host + '/' + goods_url,
                 'sku_code': sku_code,
                 'sku_name': sku_name,
                 'sku_url': sku_url,
-                'sku_img_urls': sku_img_urls,
-                'sku_img_downloads': sku_img_downloads,
+                'sku_img_urls_array': sku_img_urls,
+                'sku_img_urls': ",".join(sku_img_urls),
+                'sku_img_downloads_array': sku_img_downloads,
+                'sku_img_downloads': ",".join(sku_img_downloads),
                 'color_no': color_no,
-                'rgb_img': rgb_img,
+                'color_card_url': color_card_url,
                 'colour': colour,
             })
     return result

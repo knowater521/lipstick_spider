@@ -57,9 +57,9 @@ def get_product(page_url):
                 sku_img_url = pq(sku_img_selector).attr('data-src')
                 sku_img_urls.append(sku_img_url)
                 uuid_str = uuid.uuid4().hex
-                sku_img_file = "./img/" + uuid_str + '.jpg'
-                sku_img_downloads.append(uuid_str)
-                with codecs.open(sku_img_file, 'wb') as img_file:
+                sku_img_file = uuid_str + '.jpg'
+                sku_img_downloads.append(sku_img_file)
+                with codecs.open("./img/" + sku_img_file, 'wb') as img_file:
                     img_file.write(BytesIO(requests.get(sku_img_url).content).read())
             result.append({
                 'brand_code': brand_code,

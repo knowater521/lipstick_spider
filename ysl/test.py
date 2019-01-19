@@ -63,7 +63,7 @@ def get_product(page_url):
                     img_file.write(BytesIO(requests.get(sku_img_url).content).read())
             result.append({
                 'brand_code': brand_code,
-                'brand_name': brand_code,
+                'brand_name': brand_name,
                 'catalog_name': catalog_name,
                 'goods_code': goods_code,
                 'goods_name': goods_name,

@@ -101,7 +101,7 @@ def get_product(goods_url_list, catalog_name):
                                 'color_no': color_no,
                                 'color_card_url': color_card_url,
                                 'colour': colour0,
-                                'colour_other': colour1,
+                                'colour1': colour1,
                             })
         except Exception as e:
             print(e)

@@ -69,7 +69,7 @@ def get_product(goods_url_list, catalog_name):
                         if image.mode == 'P':
                             image = image.convert("RGB")
                         pixel0 = image.getpixel((1, 1))
-                        pixel1 = image.getpixel((1, image.size[1] - 2))
+                        pixel1 = image.getpixel((image.size[1] - 2, 1))
                         color0 = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel0)))
                         color1 = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel1)))
 

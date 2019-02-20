@@ -49,7 +49,7 @@ def get_product(page_url):
             rgb_img_response = requests.get(color_card_url)
             image = Image.open(BytesIO(rgb_img_response.content))
             pixel = image.getpixel((1, 1))
-            colour = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel)))
+            color = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel)))
             del image, pixel
 
             sku_img_urls, sku_img_downloads, sku_page = [], [], pq(url=sku_url)
@@ -77,7 +77,7 @@ def get_product(page_url):
                 'sku_img_downloads': ",".join(sku_img_downloads),
                 'color_no': color_no,
                 'color_card_url': color_card_url,
-                'colour': colour,
+                'color': color,
             })
     return result
 

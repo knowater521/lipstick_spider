@@ -70,8 +70,8 @@ def get_product(goods_url_list, catalog_name):
                             image = image.convert("RGB")
                         pixel0 = image.getpixel((1, 1))
                         pixel1 = image.getpixel((1, image.size[1] - 2))
-                        colour0 = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel0)))
-                        colour1 = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel1)))
+                        color0 = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel0)))
+                        color1 = "#" + "".join(list(map(lambda x: str(hex(x)).replace("0x", "").zfill(2), pixel1)))
 
                         color_no, sku_name = '#' + sku_title[0], ' '.join(sku_title[1:])
                         if sku_name:
@@ -100,8 +100,8 @@ def get_product(goods_url_list, catalog_name):
                                 'sku_img_downloads': ",".join(sku_img_downloads),
                                 'color_no': color_no,
                                 'color_card_url': color_card_url,
-                                'colour': colour0,
-                                'colour1': colour1,
+                                'color': color0,
+                                'color1': color1,
                             })
         except Exception as e:
             print(e)
